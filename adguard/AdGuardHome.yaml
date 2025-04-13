@@ -1,51 +1,10 @@
+bind_port: 80
 bind_host: 0.0.0.0
-bind_port: 3000
-
-http_proxy: ""
-
-users:
-  - name: admin
-    password: admin123
-
+users: []
 dns:
   bind_hosts:
     - 0.0.0.0
-  port: 53
-  statistics_interval: 1
-  querylog_enabled: true
-  querylog_file_enabled: true
-  querylog_interval: 2160h
-  querylog_size_memory: 1000
-  anonymize_client_ip: false
+  port: 3000
   protection_enabled: true
-
-filters:
-  - enabled: true
-    url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-    name: AdGuard DNS Filter
-    id: 1
-
-  - enabled: true
-    url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-    name: Steven Black
-    id: 2
-
-  - enabled: true
-    url: https://filters.adtidy.org/extension/chromium/filters/15.txt
-    name: AdGuard Mobile Ads
-    id: 3
-
-clients:
-  auto_add: true
-  allowed_ips: []
-  disallowed_ips: []
-
-log_file: ""
-log_max_backups: 1
-log_max_size: 10
-log_max_age: 30
-log_compress: false
-log_localtime: true
-verbose: false
-
-schema_version: 14
+  upstream_dns:
+    - https://dns.google/dns-query
