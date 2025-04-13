@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Set up AdGuard Home
 if [ ! -f "/opt/adguardhome/AdGuardHome" ]; then
     echo "Installing AdGuard Home..."
@@ -9,12 +11,9 @@ if [ ! -f "/opt/adguardhome/AdGuardHome" ]; then
     tar -xzf AdGuardHome_linux_amd64.tar.gz
     rm AdGuardHome_linux_amd64.tar.gz
 
-    # Pindahkan semua isi folder hasil ekstraksi ke direktori saat ini
-    if [ -d "AdGuardHome" ]; then
-        mv AdGuardHome/* ./
-        rm -rf AdGuardHome
-    else
-        echo "Error: Folder AdGuardHome tidak ditemukan setelah ekstrak."
+    # Cek apakah file AdGuardHome sudah ada
+    if [ ! -f "AdGuardHome" ]; then
+        echo "Error: File AdGuardHome tidak ditemukan setelah ekstrak."
         exit 1
     fi
 fi
