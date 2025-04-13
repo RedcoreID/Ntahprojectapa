@@ -1,12 +1,13 @@
-FROM pihole/pihole:latest
+FROM debian:bullseye-slim
 
-ENV ServerIP=0.0.0.0
-ENV WEBPASSWORD=Admin123
-ENV DNS1=1.1.1.1
-ENV DNS2=1.0.0.1
+# Install wget
+RUN apt update && apt install -y wget && apt clean
 
-COPY ./pihole/pihole.conf /etc/pihole/
+# Copy all files
+COPY start.sh /start.sh
+COPY adguard /app/adguard
+RUN chmod +x /start.sh
 
-EXPOSE 80
+EXPOSE 53 80 3000
 
 CMD ["/start.sh"]
