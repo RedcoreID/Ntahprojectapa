@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: BloodcoreID
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: DNS_DOMAIN
+        value: bloodcoreid.dns
