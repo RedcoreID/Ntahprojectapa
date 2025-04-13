@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Set up AdGuard Home
+# Set up AdGuardHome
 if [ ! -f "/opt/adguardhome/AdGuardHome" ]; then
     echo "Installing AdGuard Home..."
     mkdir -p /opt/adguardhome
     cd /opt/adguardhome
     wget https://github.com/AdguardTeam/AdGuardHome/releases/latest/download/AdGuardHome_linux_amd64.tar.gz
-    tar -xzf AdGuardHome_linux_amd64.tar.gz --strip-components=1
+    tar -xzf AdGuardHome_linux_amd64.tar.gz
     rm AdGuardHome_linux_amd64.tar.gz
+    mv AdGuardHome/AdGuardHome .
+    rm -rf AdGuardHome
 fi
 
 # Copy default config if not exist
@@ -16,4 +18,5 @@ if [ ! -f "/opt/adguardhome/AdGuardHome.yaml" ]; then
 fi
 
 # Start AdGuard Home
+chmod +x /opt/adguardhome/AdGuardHome
 /opt/adguardhome/AdGuardHome -c /opt/adguardhome/AdGuardHome.yaml -w /opt/adguardhome/work -l /opt/adguardhome/logs
