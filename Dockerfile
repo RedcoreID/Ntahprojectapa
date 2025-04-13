@@ -1,13 +1,10 @@
 FROM debian:bullseye-slim
 
-# Install wget
-RUN apt update && apt install -y wget && apt clean
+RUN apt-get update && apt-get install -y wget tar ca-certificates
 
-# Copy all files
 COPY start.sh /start.sh
-COPY adguard /app/adguard
-RUN chmod +x /start.sh
+COPY adguard/AdGuardHome.yaml /app/adguard/AdGuardHome.yaml
 
-EXPOSE 53 80 3000
+RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
